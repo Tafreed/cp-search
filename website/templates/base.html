@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<!--<link rel="stylesheet" href="index.css">-->
+	<link rel="stylesheet" href="{{url_for('static', filename='css/index.css')}}">
+	<!-- Fonts -->
+	<link href="https://fonts.googleapis.com/css?family=Raleway:100,300,400,500,700,900" rel="stylesheet">
+	<!-- Font Awesome -->
+	<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/font-awesome.css')}}">
+	<!-- Custom CSS -->
+	<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/custom.css')}}">
+	
+    {% block title %}
+		{% if title %}
+			<title>A20J</title>
+		{% else %}
+		<title>Welcome to Cp-Search</title>
+		{% endif %}
+	{% endblock %}
+  </head>
+
+  <body>
+		{% block Preloader %}
+		<!-- ***** Preloader Start ***** -->
+		<div id="preloader">
+			<div class="jumper">
+				<div></div>
+				<div></div>
+				<div></div>
+			</div>
+		</div>
+		<!-- ***** Preloader End ***** -->
+		{% endblock %}  
+		
+	{% block navbar %}
+	<header class="header-area header-sticky">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <nav class="main-nav">
+                        <!-- ***** Logo Start ***** -->
+                        <a href="#" class="logo">
+                            <img src="{{url_for('static',filename='images/logo.png')}}" alt="Image" style="height: 40px; width: 140px;">
+                        </a>
+						<!-- ***** Logo End ***** -->
+						
+                        <!-- ***** Menu Start ***** -->
+                        <ul class="nav">
+						{% if not current_user.is_authenticated %}
+					  		<li>
+								<a href="{{ url_for('home') }}">HOME</a>
+					  		</li>
+					  	{% endif %}
+					  	{% if not current_user.is_anonymous %}
+					 	<li>
+							<a href="{{ url_for('user',username=current_user.username) }}">SEARCH</a>
+					  	</li>
+					  	<li >
+							<a  href="{{ url_for('marked_problems',username=current_user.username) }}">MARKED PROBLEMS</a>
+					  	</li>
+					  	{% endif %}
+					  	{% if not current_user.is_anonymous %}
+					  		<li>
+						  		<a>{{current_user.username}}</a>
+					  		</li>
+					  		<li ><a href="{{ url_for('logout') }}">LOG OUT</a></li>
+					  	{% else %}
+					  		<li > <a href="{{ url_for('login') }}" >LOGIN</a> </li>
+					  		<li > <a href="{{ url_for('register') }}" >REGISTER</a> </li>
+					  	{% endif %}
+						</ul>
+                        <a class='menu-trigger'>
+                            <span>Menu</span>
+                        </a>
+                        <!-- ***** Menu End ***** -->
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+{% endblock %}
+{% block welcome %}
+<!-- ***** Welcome Area Start ***** -->
+<div class="welcome-area" id="welcome">
+
+	<!-- ***** Header Text Start ***** -->
+	<div class="header-text">
+		<div class="container">
+			<div class="row">
+				<div class="offset-xl-3 col-xl-6 offset-lg-2 col-lg-8 col-md-12 col-sm-12">
+					<h1><strong>Welcome to CP Search</strong> </h1>
+					<p> We provide the best <strong>way</strong><br>to search<strong> Competitive Programming Questions</strong></p>
+					<p>Signup to search various CP Questions from different platforms and brush up your skills as a Competitive Coder</p>
+					<a href="{{ url_for('register') }}" class="main-button-slider">Signup Now</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- ***** Header Text End ***** -->
+</div>
+<!-- ***** Welcome Area End ***** -->
+{% endblock %}
+
+{% block features %}
+ <!-- ***** Features Small Start ***** -->
+ <section class="section home-feature">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="row">
+					<!-- ***** Features Small Item Start ***** -->
+					<div class="col-lg-4 col-md-6 col-sm-6 col-12" data-scroll-reveal="enter bottom move 50px over 0.6s after 0.2s">
+						<div class="features-small-item">
+							<div class="icon">
+								<i><img src="{{url_for('static',filename='images/featured-item-01.png')}}"  alt="Image"></i>
+							</div>
+							<h5 class="features-title">CodeChef</h5>
+							<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptate voluptatibus, iure corporis tenetur placeat totam.</p>
+						</div>
+					</div>
+					<!-- ***** Features Small Item End ***** -->
+
+					<!-- ***** Features Small Item Start ***** -->
+					<div class="col-lg-4 col-md-6 col-sm-6 col-12" data-scroll-reveal="enter bottom move 50px over 0.6s after 0.4s">
+						<div class="features-small-item">
+							<div class="icon">
+								<i><img src="{{url_for('static',filename='images/featured-item-01.png')}}" alt="Image"></i>
+							</div>
+							<h5 class="features-title">Codeforces</h5>
+							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis, excepturi?</p>
+						</div>
+					</div>
+					<!-- ***** Features Small Item End ***** -->
+
+					<!-- ***** Features Small Item Start ***** -->
+					<div class="col-lg-4 col-md-6 col-sm-6 col-12" data-scroll-reveal="enter bottom move 50px over 0.6s after 0.6s">
+						<div class="features-small-item">
+							<div class="icon">
+								<i><img src="{{url_for('static',filename='images/featured-item-01.png')}}" alt="Image"></i>
+							</div>
+							<h5 class="features-title">SPOJ</h5>
+							<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quo, odit!</p>
+						</div>
+					</div>
+					<!-- ***** Features Small Item End ***** -->
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<!-- ***** Features Small End ***** -->
+
+    <!-- ***** Features Big Item Start ***** -->
+    <section class="section padding-top-70 padding-bottom-0" id="features">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-5 col-md-12 col-sm-12 align-self-center" data-scroll-reveal="enter left move 30px over 0.6s after 0.4s">
+                    <img src="{{url_for('static',filename='images/left-image.png')}}" class="rounded img-fluid d-block mx-auto" alt="App">
+                </div>
+                <div class="col-lg-1"></div>
+                <div class="col-lg-6 col-md-12 col-sm-12 align-self-center mobile-top-fix">
+                    <div class="left-heading">
+                        <h2 class="section-title">Discuss Problems with other Coders</h2>
+                    </div>
+                    <div class="left-text">
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus distinctio voluptates quisquam unde dolore necessitatibus possimus nostrum blanditiis inventore maxime facere reiciendis nisi eveniet natus, corrupti et nesciunt at laboriosam assumenda quod ab porro impedit! Deserunt nesciunt quia voluptate tenetur suscipit, asperiores rerum fugiat autem illo adipisci unde temporibus magnam.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="hr"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ***** Features Big Item End ***** -->
+
+    <!-- ***** Features Big Item Start ***** -->
+    <section class="section padding-bottom-100">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-12 col-sm-12 align-self-center mobile-bottom-fix">
+                    <div class="left-heading">
+                        <h2 class="section-title">We can help you to brush up your skills</h2>
+                    </div>
+                    <div class="left-text">
+                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Id voluptatum velit voluptates officiis quam quos accusamus quod illo ipsa assumenda tempora delectus, rem, impedit accusantium fugit, nostrum totam repudiandae placeat? Quos aut voluptatum qui saepe, accusamus quo atque eum laborum ad ullam, culpa quia quod obcaecati eveniet asperiores laudantium, nemo sapiente incidunt vel porro? Quis commodi in natus porro aliquam molestiae amet qui, consequatur, earum quos fugiat? Impedit minima nesciunt ipsum veritatis. Ullam tempore asperiores officiis illo quia voluptatibus ducimus.
+						</p>
+                    </div>
+                </div>
+                <div class="col-lg-1"></div>
+                <div class="col-lg-5 col-md-12 col-sm-12 align-self-center mobile-bottom-fix-big" data-scroll-reveal="enter right move 30px over 0.6s after 0.4s">
+                    <img src="{{url_for('static',filename='images/right-image.png')}}" class="rounded img-fluid d-block mx-auto" alt="App">
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ***** Features Big Item End ***** -->
+{% endblock %}
+
+{% block content %}
+	<div class="container flash">
+		{% with messages = get_flashed_messages() %}
+		{% if messages %}
+			{% for message in messages %}
+			<div>{{ message }}</div>
+			{% endfor %}
+		{% endif %}
+		{% endwith %}
+
+		{% block app_content %}{% endblock %}
+	</div>
+{% endblock %}
+
+{% block footer %}
+<footer>
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12 col-md-12 col-sm-12">
+				<ul class="social">
+					<li><a href="#"><i class="fa fa-facebook"></i></a></li>
+					<li><a href="#"><i class="fa fa-twitter"></i></a></li>
+					<li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+					<li><a href="#"><i class="fa fa-rss"></i></a></li>
+					<li><a href="#"><i class="fa fa-dribbble"></i></a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-12">
+				<p class="copyright">Copyright &copy; a bunch of nerds</p>
+			</div>
+		</div>
+	</div>
+</footer>
+{% endblock %}
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script> -->
+	
+
+	<!-- jQuery -->
+    <script type="text/javascript" src="{{url_for('static', filename='js/jquery-2.1.0.min.js')}}"></script>
+
+    <!-- Bootstrap -->
+    <script type="text/javascript" src="{{url_for('static', filename='js/popper.js')}}"></script>
+    <script type="text/javascript" src="{{url_for('static', filename='js/bootstrap.min.js')}}"></script>
+
+    <!-- Plugins -->
+    <script type="text/javascript" src="{{url_for('static', filename='js/scrollreveal.min.js')}}"></script>
+    <script type="text/javascript" src="{{url_for('static', filename='js/waypoints.min.js')}}" ></script>
+    <script type="text/javascript" src="{{url_for('static', filename='js/jquery.counterup.min.js')}}"></script>
+    <script type="text/javascript" src="{{url_for('static', filename='js/imgfix.min.js')}}"></script> 
+    
+    <!-- Custom Javascript -->
+    <script type="text/javascript" src="{{url_for('static', filename='js/custom.js')}}"></script>
+  </body>
+</html>
