@@ -1,0 +1,21 @@
+<tr scope="row">
+  <td><a href="{{ problem.problem_link }}"><b>{{ problem.problem_name }}</b></a></td>
+  <td class="text-right">
+  	{% if not current_user.is_marked(problem) %}
+		<form action="{{ url_for('mark_problem',
+		prob_id=problem.id) }}" method="post" style="display: inline-block; text-align: right; width: 140px;">
+		{{ form.hidden_tag() }}
+		{{ form.submit(value='Mark', class='btn btn-default') }}
+		</form>
+
+	{% else %}
+		<form action="{{ url_for('unmark_problem',
+		prob_id=problem.id) }}" method="post" style="display: inline-block; text-align: right; width: 140px;">
+		{{ form.hidden_tag() }}
+		{{ form.submit(value='Unmark', 
+		class='btn btn-default') }}
+		</form>
+
+	{% endif %}
+  </td>
+</tr>
