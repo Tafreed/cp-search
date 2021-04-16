@@ -12,11 +12,9 @@ pip install -r requirements.txt
 
 Install Elastisearch using the links given as follows for Windows and Linux:-
 
-Linux:-
-https://linuxize.com/post/how-to-install-elasticsearch-on-ubuntu-18-04/
+[Linux](https://linuxize.com/post/how-to-install-elasticsearch-on-ubuntu-18-04/)
 
-Windows:-
-https://www.elastic.co/guide/en/elasticsearch/reference/current/zip-windows.html
+[Windows:-](https://www.elastic.co/guide/en/elasticsearch/reference/current/zip-windows.html)
 
 After successfully installing elastisearch, enter the following in the terminal or powershell:-
 
