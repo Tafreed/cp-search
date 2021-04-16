@@ -29,6 +29,6 @@ This will take a few minutes.
 
 After this is finished, enter the following in the terminal or powershell to run the App:-
 
-```python
+```console
 python cp_search_engine.py
 ```
