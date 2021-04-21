@@ -33,7 +33,6 @@ def home():
 def login():
     if current_user.is_authenticated:
         return redirect(url_for('user',username=current_user.username))
-
     form = LoginForm()
     if form.validate_on_submit():
         user = User.query.filter_by(username=form.username.data).first()
