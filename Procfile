@@ -1,1 +1,1 @@
-web: gunicorn app:cp_search_engine
+web: gunicorn app: cp_search_engine

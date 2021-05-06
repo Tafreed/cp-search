@@ -18,6 +18,14 @@ def paginate(lst, page_no, items_per_page):
 
 
 @app.route('/', methods=['GET', 'POST'])
+def start():
+    if current_user.is_authenticated:
+        return redirect(url_for('user',username=current_user.username))
+    form = SearchForm()
+    if form.validate_on_submit():
+        return redirect(url_for('about'))
+
+    return render_template('home.html', form=form)
 @app.route('/home', methods=['GET', 'POST'])
 def home():
     if current_user.is_authenticated:
