@@ -1,1 +1,1 @@
-web: gunicorn --bind 0.0.0.0:$PORT cp_search_engine:app
+web: gunicorn cp_search_engine:app
