@@ -71,6 +71,6 @@ class PostForm(FlaskForm):
 
 class SearchForm(FlaskForm):
     #text = Markup('<i class="fas fa-sign-in-alt"></i> Submit')
-    query = StringField('')
+    query = StringField('', render_kw={"placeholder": "Search by: Problem Name or Tag"})
     #submit = SubmitField(search, widget=InlineButtonWidget(class_="btn btn-info"))
     submit = SubmitField('Search')
