@@ -1,1 +1,6 @@
-virtual_env/
+.venv/
+__pycache__/
+*.pyc
+*.db
+.coverage
+.pytest_cache/

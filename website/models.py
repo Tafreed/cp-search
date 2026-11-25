@@ -5,7 +5,6 @@ from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
 import jwt
 from website import app, db, login
-import jellyfish
 from website.search import add_to_index, remove_from_index, query_index
 
 
@@ -18,9 +17,8 @@ class SearchableMixin(object):
         when = []
         for i in range(len(ids)):
             when.append((ids[i], i))
-        print(cls.query.filter(cls.id.in_(ids)))
         return cls.query.filter(cls.id.in_(ids)).order_by(
-            db.case(when, value=cls.id)), total
+            db.case(*when, value=cls.id)), total
 
     @classmethod
     def before_commit(cls, session):
@@ -98,7 +96,7 @@ class User(UserMixin, db.Model):
     def get_reset_password_token(self, expires_in=600):
         return jwt.encode(
             {'reset_password': self.id, 'exp': time() + expires_in},
-            app.config['SECRET_KEY'], algorithm='HS256').decode('utf-8')
+            app.config['SECRET_KEY'], algorithm='HS256')
 
     def is_marked(self, problem):
         return self.marked_problems.filter(marked.c.problem_id == problem.id).count() > 0
@@ -116,9 +114,9 @@ class User(UserMixin, db.Model):
         try:
             id = jwt.decode(token, app.config['SECRET_KEY'],
                             algorithms=['HS256'])['reset_password']
-        except:
+        except Exception:
             return
-        return User.query.get(id)
+        return db.session.get(User, id)
 
     def __repr__(self):
         return '<User {}>'.format(self.username)    
@@ -126,7 +124,7 @@ class User(UserMixin, db.Model):
 
 @login.user_loader
 def load_user(id):
-    return User.query.get(int(id))
+    return db.session.get(User, int(id))
 
 
 

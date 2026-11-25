@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% import 'bootstrap/wtf.html' as wtf %}
+{% from 'bootstrap4/form.html' import render_form %}
 
 {% block welcome %}
 {% endblock %}
@@ -9,7 +9,7 @@
 {% block app_content %}
 <h1><center>Search Problems</center></h1>
 <div class="search-problem-box">
-	{{ wtf.quick_form(form, form_type="horizontal inline") }}
+	{{ render_form(form, form_type="inline") }}
 </div>
 <br><br><br>
 <div>
